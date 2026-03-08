@@ -35,7 +35,7 @@ class Parser(Serializable):
         self.fullPath = path.abspath(filename)
         self.filename = path.basename(self.fullPath)
         self.original_headers = []
-        self.df = pd.read_csv(filename)
+        self.df = pd.read_csv(filename, low_memory=False)
         self.original_headers = self.df.columns.values
 
     def set_current_dataframe(self, new_data_frame: pd.DataFrame) -> None:
@@ -218,9 +218,6 @@ class Parser(Serializable):
             return
         
         echo(style(text=f"No items found.", fg="red", bold=True))
-
-
-        
 
     def Vicidialize(self, phoneColumn: int, altPhoneColumn: int) -> None:
         """
